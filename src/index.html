@@ -1,13 +1,204 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>MP1</title>
-    </head>
-    <body>
-        <h1>Hello World! Welcome to MP1!</h1>
-        <img src="assets/image.jpg">
-    </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Medici Family</title>
+  <!-- Compiled CSS from SCSS -->
+  <link rel="stylesheet" href="css/main.scss" />
+  <!-- FontAwesome for scalable vector icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+</head>
+<body>
+  <!-- Header with sticky navigation bar -->
+  <header>
+    <nav class="navbar large">
+      <ul>
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#members">Family</a></li>
+        <li><a href="#legacy">Legacy</a></li>
+        <li><a href="#video">Video</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main content area -->
+  <main>
+    <!-- Hero section with vertically centered content -->
+    <section id="home" class="section fade-in">
+      <div class="hero-content">
+        <h1>The Medici Family</h1>
+        <p>
+          Discover the story of one of the most influential dynasties of the
+          Renaissance.
+        </p>
+        <a href="#about" class="button">Learn More</a>
+      </div>
+    </section>
+
+    <!-- About section with multi‑column layout -->
+    <section id="about" class="section fade-in">
+      <div class="container">
+        <h2>About the Medicis</h2>
+        <div class="columns">
+          <p>
+            The Medici family first rose to prominence in Florence through their
+            success in commerce and banking in the 13th century. Under Cosimo
+            de' Medici, the family's patronage of art and learning transformed
+            Florence into the cradle of the Renaissance and solidified their
+            political power.
+          </p>
+          <p>
+            The family produced four popes—Leo X, Clement VII, Pius IV and Leo XI—and
+            intermarried with many of Europe's royal houses.
+            Cosimo's grandson Lorenzo, known as the Magnificent, supported
+            masters such as Botticelli, Leonardo da Vinci and Michelangelo.
+          </p>
+          <p>
+            The dynasty's influence reached beyond Italy. Catherine de' Medici
+            became queen of France and three of her sons ruled as kings.
+            The family's later branch produced Cosimo I, who became duke of
+            Florence in 1537 and grand duke of Tuscany in 1569.
+            The last Medici ruler died in 1737, marking the end of nearly three
+            centuries of Medici power.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery section with a simple carousel -->
+    <section id="gallery" class="section fade-in">
+      <div class="container">
+        <h2>Renaissance Patterns</h2>
+        <div class="carousel">
+          <div class="slides">
+            <div
+              class="slide"
+              style="background-image:url('assets/slide1.png');"
+            ></div>
+            <div
+              class="slide"
+              style="background-image:url('assets/slide2.png');"
+            ></div>
+            <div
+              class="slide"
+              style="background-image:url('assets/slide3.png');"
+            ></div>
+          </div>
+          <button class="arrow prev">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button class="arrow next">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Family members section with cards and modals -->
+    <section id="members" class="section fade-in">
+      <div class="container">
+        <h2>Notable Members</h2>
+        <div class="cards">
+          <div class="card">
+            <h3>Cosimo the Elder</h3>
+            <p>
+              Patron of artists and architects; ruled Florence from 1434 until his
+              death.
+            </p>
+            <button class="member-button" data-member="cosimo">
+              Read More
+            </button>
+          </div>
+          <div class="card">
+            <h3>Lorenzo the Magnificent</h3>
+            <p>
+              Poet and statesman who supported Botticelli, Leonardo da Vinci, and
+              Michelangelo.
+            </p>
+            <button class="member-button" data-member="lorenzo">
+              Read More
+            </button>
+          </div>
+          <div class="card">
+            <h3>Catherine de Medici</h3>
+            <p>
+              Queen of France whose sons Henry III, Charles IX and Francis II all
+              became kings.
+            </p>
+            <button class="member-button" data-member="catherine">
+              Read More
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Legacy section with fixed background image -->
+    <section id="legacy" class="section fade-in">
+      <div class="container">
+        <h2>Legacy</h2>
+        <p>
+          The Medici's support of the arts fostered masterpieces that still
+          define the Renaissance. Cosimo's Uffizi offices became a museum that
+          houses priceless works. Under their
+          patronage, Florence thrived culturally and economically, leaving an
+          enduring legacy.
+        </p>
+        <p>
+          Even after their political power waned, the family's influence on art,
+          science, and politics echoed across Europe. Today, their palaces,
+          libraries and collections remain central to understanding this
+          transformative era.
+        </p>
+      </div>
+    </section>
+
+    <!-- Video section with HTML5 video tag -->
+    <section id="video" class="section fade-in">
+      <div class="container video-wrapper">
+        <h2>Renaissance in Motion</h2>
+        <video controls>
+          <source
+            src="https://www.w3schools.com/html/mov_bbb.mp4"
+            type="video/mp4"
+          />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer with contact section and social media icons -->
+  <footer>
+    <section id="contact" class="section">
+      <div class="container">
+        <div class="social">
+          <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
+          <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p>© 2025 Medici Family Page. All rights reserved.</p>
+      </div>
+    </section>
+  </footer>
+
+  <!-- Modal container for dynamic content -->
+  <div class="modal">
+    <div class="modal-content">
+      <button class="close">&times;</button>
+      <h3></h3>
+      <p></p>
+    </div>
+  </div>
+
+  <!-- External JavaScript file -->
+  <script src="js/main.js"></script>
+</body>
 </html>
