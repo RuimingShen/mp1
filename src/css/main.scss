@@ -1,1 +1,366 @@
 /* Your SCSS here. */
+/* Your SCSS here. */
+$primary: #4c3a32;
+$accent: #b2956c;
+$light: #f7f3ec;
+$dark: #2d1d14;
+$overlay: rgba(76, 58, 50, 0.7);
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Georgia', serif;
+  color: $dark;
+  background-color: $light;
+  line-height: 1.6;
+}
+
+section {
+  width: 100%;
+  min-height: 100vh;
+  padding: 4rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba($primary, 0.95);
+  color: $light;
+  z-index: 1000;
+  transition: padding 0.3s ease, background 0.3s ease;
+  ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    li {
+      margin: 0 1rem;
+      a {
+        color: $light;
+        text-decoration: none;
+        padding: 0.5rem 0;
+        transition: color 0.3s, border-color 0.3s;
+        border-bottom: 2px solid transparent;
+        &.active {
+          color: $accent;
+          border-color: $accent;
+        }
+        &:hover {
+          color: $accent;
+        }
+      }
+    }
+  }
+  &.large {
+    padding: 1rem 0;
+    ul li a {
+      font-size: 1.1rem;
+    }
+  }
+  &.small {
+    padding: 0.5rem 0;
+    ul li a {
+      font-size: 0.9rem;
+    }
+  }
+}
+
+#home {
+  background: url('hero.png') center/cover fixed;
+  color: $light;
+  text-align: center;
+  .hero-content {
+    background: $overlay;
+    padding: 2rem 3rem;
+    border-radius: 8px;
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+    .button {
+      display: inline-block;
+      background: $accent;
+      color: $primary;
+      padding: 0.7rem 1.4rem;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: background 0.3s, color 0.3s;
+      &:hover {
+        background: $primary;
+        color: $light;
+      }
+    }
+  }
+}
+
+#about {
+  background-color: $light;
+  color: $dark;
+  h2 {
+    margin-bottom: 2rem;
+    color: $primary;
+  }
+  .columns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    max-width: 1200px;
+    p {
+      flex: 1 1 300px;
+    }
+  }
+}
+
+#gallery {
+  background-color: $light;
+  color: $dark;
+  h2 {
+    color: $primary;
+    margin-bottom: 2rem;
+  }
+  .carousel {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    overflow: hidden;
+    .slides {
+      display: flex;
+      transition: transform 0.5s ease;
+      .slide {
+        flex: 0 0 100%;
+        height: 350px;
+        background-size: cover;
+        background-position: center;
+      }
+    }
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba($primary, 0.7);
+      color: $light;
+      border: none;
+      cursor: pointer;
+      padding: 0.6rem 0.9rem;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      &:hover {
+        background: $accent;
+        color: $primary;
+      }
+      &.prev {
+        left: 10px;
+      }
+      &.next {
+        right: 10px;
+      }
+    }
+  }
+}
+
+#members {
+  background-color: $light;
+  color: $dark;
+  h2 {
+    color: $primary;
+    margin-bottom: 2rem;
+  }
+  .cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    .card {
+      background: rgba($primary, 0.05);
+      padding: 1.5rem;
+      border-radius: 8px;
+      max-width: 300px;
+      h3 {
+        color: $primary;
+        margin-bottom: 0.5rem;
+      }
+      p {
+        margin-bottom: 1rem;
+      }
+      .member-button {
+        background: $primary;
+        color: $light;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background 0.3s;
+        &:hover {
+          background: $accent;
+          color: $primary;
+        }
+      }
+    }
+  }
+}
+
+#legacy {
+  background: url('dark.png') center/cover fixed;
+  color: $light;
+  .container {
+    background: rgba($primary, 0.75);
+    padding: 2rem;
+    border-radius: 8px;
+    max-width: 800px;
+    h2 {
+      margin-bottom: 1rem;
+    }
+    p {
+      margin-bottom: 1rem;
+    }
+  }
+}
+
+#video {
+  background-color: $light;
+  color: $dark;
+  .video-wrapper {
+    text-align: center;
+    h2 {
+      color: $primary;
+      margin-bottom: 1rem;
+    }
+    video {
+      width: 100%;
+      max-width: 700px;
+      border-radius: 8px;
+    }
+  }
+}
+
+#contact {
+  background: $primary;
+  color: $light;
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    .social {
+      a {
+        color: $light;
+        margin: 0 0.5rem;
+        font-size: 1.5rem;
+        transition: color 0.3s;
+        &:hover {
+          color: $accent;
+        }
+      }
+    }
+    p {
+      font-size: 0.9rem;
+    }
+  }
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba($primary, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 2000;
+  .modal-content {
+    background: $light;
+    color: $primary;
+    padding: 2rem;
+    border-radius: 8px;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+    h3 {
+      margin-top: 0;
+      margin-bottom: 1rem;
+    }
+    p {
+      margin-bottom: 0;
+    }
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: $primary;
+      cursor: pointer;
+    }
+  }
+  &.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  &.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsiveness */
+@media (max-width: 1024px) {
+  .columns p {
+    flex: 1 1 100%;
+  }
+  .cards .card {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar.large ul li a {
+    font-size: 1rem;
+  }
+  .navbar.small ul li a {
+    font-size: 0.8rem;
+  }
+  #home .hero-content {
+    padding: 1.5rem 2rem;
+    h1 { font-size: 2.5rem; }
+    p { font-size: 1rem; }
+  }
+}
+
+@media (max-width: 480px) {
+  #home .hero-content {
+    h1 { font-size: 2rem; }
+    p { font-size: 0.9rem; }
+  }
+  .navbar {
+    ul li {
+      margin: 0 0.5rem;
+    }
+  }
+}
