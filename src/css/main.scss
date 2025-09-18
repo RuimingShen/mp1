@@ -76,13 +76,14 @@ section {
 }
 
 #home {
-  background: url('hero.png') center/cover fixed;
-  color: $light;
-  text-align: center;
+  /* 保持使用原来的 hero.png 作为固定背景 */
+  background-image: url('hero.png');
   background-attachment: fixed;
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
+  color: $light;
+  text-align: center;
   .hero-content {
     background: $overlay;
     padding: 2rem 3rem;
@@ -151,15 +152,21 @@ section {
       .slide {
         flex: 0 0 100%;
         height: 400px;
-        background-size: 200px 200px;
+        /* 对于平铺图案，使用repeat和适当的尺寸 */
+        background-size: 200px 200px; /* 或者使用 auto auto */
         background-position: center center;
         background-repeat: repeat;
         display: flex;
         align-items: center;
         justify-content: center;
         
+        /* 为了让图案居中对齐，可以使用以下设置 */
         background-origin: content-box;
         
+        /* 备选尺寸选项 */
+        /* background-size: 150px 150px; */ /* 较小的重复 */
+        /* background-size: 300px 300px; */ /* 较大的重复 */
+        /* background-size: auto auto; */    /* 原始尺寸 */
       }
     }
     .arrow {
@@ -233,13 +240,13 @@ section {
 }
 
 #legacy {
-  background: url('dark.png') center/cover fixed;
-  color: $light;
-  /* 确保fixed背景图片效果 */
+  /* 保持使用原来的 dark.png 作为固定背景 */
+  background-image: url('dark.png');
   background-attachment: fixed;
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
+  color: $light;
   .container {
     background: rgba($primary, 0.75);
     padding: 2rem;
