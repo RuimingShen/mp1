@@ -378,7 +378,12 @@ html, body { overflow-x: hidden; }
 .container { width: min(100% - 2rem, 1200px); margin-inline: auto; }
 
 @media (max-height: 800px) {
-  #home, #legacy { background-attachment: scroll; }
+  /* Keep fixed background attachment for better visual effect */
+  #home, #legacy { 
+    background-attachment: fixed;
+    /* Adjust section heights for shorter screens */
+    min-height: 90vh;
+  }
 }
 
 @media (min-width: 1024px) and (max-width: 1279.98px) {
