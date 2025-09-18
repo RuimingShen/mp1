@@ -1,5 +1,4 @@
 /* Your SCSS here. */
-/* Your SCSS here. */
 $primary: #4c3a32;
 $accent: #b2956c;
 $light: #f7f3ec;
@@ -138,14 +137,24 @@ section {
     width: 100%;
     max-width: 800px;
     overflow: hidden;
+    border-radius: 8px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     .slides {
       display: flex;
       transition: transform 0.5s ease;
+      width: 100%;
       .slide {
         flex: 0 0 100%;
         height: 350px;
         background-size: cover;
-        background-position: center;
+        background-position: center center;
+        background-repeat: no-repeat;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
     }
     .arrow {
@@ -159,6 +168,7 @@ section {
       padding: 0.6rem 0.9rem;
       border-radius: 50%;
       font-size: 1.2rem;
+      z-index: 10;
       &:hover {
         background: $accent;
         color: $primary;
