@@ -62,7 +62,26 @@ document.addEventListener('DOMContentLoaded', function () {
   // Initial state
   resizeNav();
   updateActive();
+  (function() {
+  const sections = Array.from(document.querySelectorAll('.section.parallax'));
 
+  function update() {
+    const vh = window.innerHeight;
+
+    sections.forEach(sec => {
+      const rect = sec.getBoundingClientRect();
+      const total = rect.height + vh;
+      const passed = vh - rect.top;
+      const t = Math.min(1, Math.max(0, passed / total));
+      const y = (t * 100).toFixed(2) + '%';
+      sec.style.setProperty('--parallax-y', y);
+    });
+  }
+
+  update();
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  })();
   // Carousel functionality
   const slidesContainer = document.querySelector('.carousel .slides');
   const slides = document.querySelectorAll('.carousel .slide');
@@ -150,3 +169,5 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 });
+
+
