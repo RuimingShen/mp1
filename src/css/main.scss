@@ -472,10 +472,10 @@ html, body { overflow-x: hidden; }
 }
 
 #home.parallax {
-  background-image: url('assets/slide1.png');
+  background-image: url('slide1.png');
 }
 #legacy.parallax {
-  background-image: url('assets/dark.png');
+  background-image: url('dark.png');
 }
 
 @media (max-width: 768px) {
