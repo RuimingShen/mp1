@@ -4,15 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Medici Family</title>
-  
+  <!-- Compiled CSS from SCSS -->
   <link rel="stylesheet" href="css/main.scss" />
-
+  <!-- FontAwesome for scalable vector icons -->
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
   />
 </head>
 <body>
+  <!-- Header with sticky navigation bar -->
   <header>
     <nav class="navbar large">
       <ul>
@@ -27,18 +28,21 @@
     </nav>
   </header>
 
+  <!-- Main content area -->
   <main>
-    <section id="home" class="section fade-in scroll-image">
-  <div class="scroll-image__sticky">
-    <img src="assets/slide1.png" alt="Home long image" />
-    <div class="overlay">
-      <h1>The Medici Family</h1>
-      <p>Discover the story of one of the most influential dynasties of the Renaissance.</p>
-      <a href="#about" class="button">Learn More</a>
-    </div>
-  </div>
-   </section>
+    <!-- Hero section with vertically centered content -->
+    <section id="home" class="section fade-in">
+      <div class="hero-content">
+        <h1>The Medici Family</h1>
+        <p>
+          Discover the story of one of the most influential dynasties of the
+          Renaissance.
+        </p>
+        <a href="#about" class="button">Learn More</a>
+      </div>
+    </section>
 
+    <!-- About section with multi‑column layout -->
     <section id="about" class="section fade-in">
       <div class="container">
         <h2>About the Medicis</h2>
@@ -68,6 +72,7 @@
       </div>
     </section>
 
+    <!-- Gallery section with a simple carousel -->
     <section id="gallery" class="section fade-in">
       <div class="container">
         <h2>Renaissance Patterns</h2>
@@ -96,6 +101,7 @@
       </div>
     </section>
 
+    <!-- Family members section with cards and modals -->
     <section id="members" class="section fade-in">
       <div class="container">
         <h2>Notable Members</h2>
@@ -134,30 +140,27 @@
       </div>
     </section>
 
-    <section id="legacy" class="section fade-in scroll-image">
-  <div class="scroll-image__sticky">
-    <!-- 背景长图 -->
-    <img src="assets/dark.png" alt="Legacy long image" />
+    <!-- Legacy section with fixed background image -->
+    <section id="legacy" class="section fade-in">
+      <div class="container">
+        <h2>Legacy</h2>
+        <p>
+          The Medici's support of the arts fostered masterpieces that still
+          define the Renaissance. Cosimo's Uffizi offices became a museum that
+          houses priceless works. Under their
+          patronage, Florence thrived culturally and economically, leaving an
+          enduring legacy.
+        </p>
+        <p>
+          Even after their political power waned, the family's influence on art,
+          science, and politics echoed across Europe. Today, their palaces,
+          libraries and collections remain central to understanding this
+          transformative era.
+        </p>
+      </div>
+    </section>
 
-    <!-- 覆盖文字内容 -->
-    <div class="overlay">
-      <h2>Legacy</h2>
-      <p>
-        The Medici's support of the arts fostered masterpieces that still
-        define the Renaissance. Cosimo's Uffizi offices became a museum that
-        houses priceless works. Under their patronage, Florence thrived
-        culturally and economically, leaving an enduring legacy.
-      </p>
-      <p>
-        Even after their political power waned, the family's influence on art,
-        science, and politics echoed across Europe. Today, their palaces,
-        libraries and collections remain central to understanding this
-        transformative era.
-      </p>
-    </div>
-  </div>
-</section>
-
+    <!-- Video section with HTML5 video tag -->
     <section id="video" class="section fade-in">
       <div class="container video-wrapper">
         <h2>Renaissance in Motion</h2>
@@ -172,6 +175,7 @@
     </section>
   </main>
 
+  <!-- Footer with contact section and social media icons -->
   <footer>
     <section id="contact" class="section">
       <div class="container">
@@ -185,6 +189,7 @@
     </section>
   </footer>
 
+  <!-- Modal container for dynamic content -->
   <div class="modal">
     <div class="modal-content">
       <button class="close">&times;</button>
@@ -193,6 +198,7 @@
     </div>
   </div>
 
+  <!-- External JavaScript file -->
   <script src="js/main.js"></script>
 </body>
 </html>
