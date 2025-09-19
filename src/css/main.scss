@@ -236,10 +236,94 @@ footer, #contact { position: relative; z-index: 1; }
   &.active { opacity: 1; pointer-events: auto; }
 }
 
-/* =========================
-   Fade-in Animation
-========================= */
 .fade-in {
   opacity: 0; transform: translateY(20px);
-  transition: opacity 0.8s ease, tran
+  transition: opacity 0.8s ease, transform 0.8s ease;
 
+  &.show { opacity: 1; transform: translateY(0); }
+}
+
+/* 关键：避免 fixed 背景被 section 本体的 transform 影响 */
+#home.fade-in,
+#legacy.fade-in { transform: none !important; }
+
+/* =========================
+   Responsiveness
+========================= */
+@media (max-width: 1024px) {
+  .columns p { flex: 1 1 100%; }
+  .cards .card { max-width: 100%; }
+}
+
+@media (max-width: 768px) {
+  .navbar.large ul li a { font-size: 1rem; }
+  .navbar.small ul li a { font-size: 0.8rem; }
+  #home .hero-content {
+    padding: 1.5rem 2rem;
+    h1 { font-size: 2.5rem; }
+    p  { font-size: 1rem; }
+  }
+}
+
+@media (max-width: 480px) {
+  #home .hero-content {
+    h1 { font-size: 2rem; }
+    p  { font-size: 0.9rem; }
+  }
+  .navbar ul li { margin: 0 0.5rem; }
+}
+
+/* 1024~1279 */
+@media (min-width: 1024px) and (max-width: 1279.98px) {
+  .container { width: min(100% - 2rem, 960px); }
+  .navbar.large ul li a { font-size: 1rem; }
+  #home .hero-content {
+    padding: 1.75rem 2.25rem;
+    h1 { font-size: 2.4rem; }
+    p  { font-size: 1.05rem; }
+  }
+  #gallery .carousel { max-width: 700px; }
+  #members .cards .card { max-width: 320px; }
+}
+
+/* 1280~1365（含内嵌高度限制） */
+@media (min-width: 1280px) and (max-width: 1365.98px) {
+  .container { width: min(100% - 2rem, 1120px); }
+  #home .hero-content {
+    padding: 1.75rem 2.5rem;
+    h1 { font-size: 2.6rem; }
+    p  { font-size: 1.1rem; }
+  }
+  @media (max-height: 740px) {
+    .navbar { position: sticky; top: 0; }
+    #home { min-height: 92vh; }
+    #home .hero-content { padding: 1.25rem 2rem; }
+  }
+  #gallery .carousel { max-width: 760px; }
+}
+
+/* 1366~1919 */
+@media (min-width: 1366px) and (max-width: 1919.98px) {
+  .container { width: min(100% - 2rem, 1200px); }
+  .navbar.large ul li a { font-size: 1.05rem; }
+  #home .hero-content {
+    h1 { font-size: 2.8rem; }
+    p  { font-size: 1.15rem; }
+  }
+  #gallery .carousel { max-width: 800px; }
+  @media (max-height: 800px) { #home { min-height: 95vh; } }
+}
+
+/* ≥1920 */
+@media (min-width: 1920px) {
+  .container { width: min(100% - 3rem, 1440px); }
+  .navbar.large ul li a { font-size: 1.15rem; }
+  #home .hero-content {
+    padding: 2.25rem 3rem;
+    h1 { font-size: 3.2rem; }
+    p  { font-size: 1.2rem; }
+  }
+  #gallery .carousel { max-width: 920px; }
+  #members .cards .card { max-width: 340px; }
+  @media (min-height: 1000px) { #home { min-height: 70vh; } }
+}
