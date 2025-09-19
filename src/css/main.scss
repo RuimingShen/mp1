@@ -352,16 +352,19 @@ section {
   will-change: transform;
 }
 
-/* 覆盖在窗口上的文字（可选） */
 .scroll-image__sticky .overlay {
   position: absolute;
   inset: 0;
-  display: grid;
-  place-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   text-align: center;
   color: #fff;
   padding: 2rem;
-  pointer-events: none; // 避免挡住滚动
+  max-width: 800px;
+  margin: 0 auto;
+  pointer-events: none; /* 文字仅展示，不挡滚动 */
 }
 .modal {
   position: fixed;
