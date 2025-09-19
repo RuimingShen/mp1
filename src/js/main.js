@@ -62,6 +62,62 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
   }
+  // ====== 在你的 main.js 中【添加】以下代码 ======
+function setupScrollImage(section) {
+  const sticky = section.querySelector('.scroll-image__sticky');
+  const img = sticky?.querySelector('img');
+  if (!sticky || !img) return;
+
+  function getDisplayedImgHeight() {
+    // 图片以“宽度填满窗口”的比例缩放：显示高度 = naturalHeight * scale
+    const scale = sticky.clientWidth / img.naturalWidth;
+    return img.naturalHeight * scale;
+  }
+
+  function setSectionHeight() {
+    const vh = window.innerHeight;
+    const imgH = getDisplayedImgHeight();
+    const extra = Math.max(0, imgH - vh);           // 需要额外滚动的像素
+    section.style.height = (vh + extra) + 'px';     // 总高度 = 窗口高 + 额外
+  }
+
+  function updateImageOffset() {
+    const vh = window.innerHeight;
+    const rect = section.getBoundingClientRect();
+    const start = rect.top;
+    const end = rect.bottom - vh;
+    const total = Math.max(end - start, 1);
+    const p = clamp((0 - start) / total, 0, 1);     // 0 → 1 的滚动进度
+    const travel = Math.max(0, getDisplayedImgHeight() - vh);
+    const y = -p * travel;                          // 向上移动
+    img.style.transform = `translate3d(-50%, ${y}px, 0)`;
+  }
+
+  let ticking = false;
+  function onScrollOrResize() {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        setSectionHeight();
+        updateImageOffset();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }
+
+  function init() {
+    setSectionHeight();
+    updateImageOffset();
+    window.addEventListener('scroll', onScrollOrResize, { passive: true });
+    window.addEventListener('resize', onScrollOrResize, { passive: true });
+  }
+
+  if (img.complete) init();
+  else img.addEventListener('load', init, { once: true });
+}
+
+function clamp(v, lo, hi) { return Math.min(hi, Math.max(lo, v)); }
+
 
   // Smooth scrolling for nav links
   navLinks.forEach((link) => {
