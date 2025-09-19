@@ -326,7 +326,43 @@ section {
     }
   }
 }
+.scroll-image {
+  position: relative; // 高度由 JS 动态设置
+}
 
+.scroll-image__sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;     // 视口高，即“窗口”
+  overflow: hidden;
+  background: #000;  // 可改
+}
+
+/* 长图：宽度铺满窗口，按比例拉长；在窗口内只做垂直位移 */
+.scroll-image__sticky img {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%); // 水平居中
+  width: 100%;
+  height: auto;
+  display: block;
+  pointer-events: none;
+  user-select: none;
+  will-change: transform;
+}
+
+/* 覆盖在窗口上的文字（可选） */
+.scroll-image__sticky .overlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  color: #fff;
+  padding: 2rem;
+  pointer-events: none; // 避免挡住滚动
+}
 .modal {
   position: fixed;
   top: 0;
