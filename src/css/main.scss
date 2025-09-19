@@ -460,3 +460,33 @@ html, body { overflow-x: hidden; }
     #home { min-height: 70vh; }
   }
 }
+
+.section.parallax {
+  position: relative;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  overflow: clip;
+
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+
+  > * { position: relative; z-index: 1; }
+}
+
+#home.parallax {
+  background-image: url('assets/medici-hero.jpg');
+}
+#legacy.parallax {
+  background-image: url('assets/medici-legacy.jpg');
+}
+
+@media (max-width: 768px) {
+  .section.parallax {
+    background-attachment: scroll;
+  }
+}
+
