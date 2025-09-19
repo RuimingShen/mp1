@@ -62,8 +62,7 @@ section {
    Home (fixed background via attachment)
 ========================= */
 #home {
-  /* 你已在 HTML/SCSS 上设置了 --bg-image，这里直接用 */
-  background-image: var(--bg-image);
+  background-image: url(slide1.png);
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -215,7 +214,6 @@ section {
   }
 }
 
-/* 为确保任何情况下都不会被覆盖（多余但稳妥） */
 footer, #contact { position: relative; z-index: 1; }
 
 /* =========================
