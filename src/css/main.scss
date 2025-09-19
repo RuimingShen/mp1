@@ -280,21 +280,21 @@ section {
    Legacy
 ========================= */
 #legacy {
-  @extend .fixed-bg;
-  --bg-image: url('dark.png'); /* 路径修正为 assets 下 */
+  background: url('dark.png') center/cover fixed;
   color: $light;
-
   .container {
     background: rgba($primary, 0.75);
     padding: 2rem;
     border-radius: 8px;
     max-width: 800px;
-
-    h2 { margin-bottom: 1rem; }
-    p  { margin-bottom: 1rem; }
+    h2 {
+      margin-bottom: 1rem;
+    }
+    p {
+      margin-bottom: 1rem;
+    }
   }
 }
-
 /* =========================
    Video
 ========================= */
