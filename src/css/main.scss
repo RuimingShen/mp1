@@ -1,4 +1,3 @@
-/* Your SCSS here. */
 /* =========================
    Variables
 ========================= */
@@ -11,12 +10,7 @@ $overlay: rgba(76, 58, 50, 0.7);
 /* =========================
    Reset & Base
 ========================= */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
+* { box-sizing: border-box; margin: 0; padding: 0; }
 html, body { overflow-x: hidden; }
 
 body {
@@ -42,82 +36,39 @@ section {
    Navbar
 ========================= */
 .navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background: rgba($primary, 0.95);
-  color: $light;
+  position: fixed; top: 0; left: 0; width: 100%;
+  background: rgba($primary, 0.95); color: $light;
   z-index: 1000;
   transition: padding 0.3s ease, background 0.3s ease;
 
   ul {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-
+    list-style: none; display: flex; justify-content: center; align-items: center; height: 100%;
     li {
       margin: 0 1rem;
-
       a {
-        color: $light;
-        text-decoration: none;
-        padding: 0.5rem 0;
-        transition: color 0.3s, border-color 0.3s;
-        border-bottom: 2px solid transparent;
-
-        &.active {
-          color: $accent;
-          border-color: $accent;
-        }
+        color: $light; text-decoration: none; padding: 0.5rem 0;
+        transition: color 0.3s, border-color 0.3s; border-bottom: 2px solid transparent;
+        &.active { color: $accent; border-color: $accent; }
         &:hover { color: $accent; }
       }
     }
   }
 
-  &.large {
-    padding: 1rem 0;
-    ul li a { font-size: 1.1rem; }
-  }
-  &.small {
-    padding: 0.5rem 0;
-    ul li a { font-size: 0.9rem; }
-  }
+  &.large { padding: 1rem 0; ul li a { font-size: 1.1rem; } }
+  &.small { padding: 0.5rem 0; ul li a { font-size: 0.9rem; } }
 }
 
 /* =========================
-   Fixed Background Utility
-   （核心：不改 HTML，用 @extend 应用）
-========================= */
-.fixed-bg {
-  position: relative;
-  isolation: isolate; /* 防止 z-index 污染 */
-}
-.fixed-bg::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-image: var(--bg-image);
-}
-
-/* 当 section 既是 fixed-bg 又有 fade-in 时，关闭位移动画以避免影响 fixed 背景 */
-.fixed-bg.fade-in {
-  transform: none !important;
-}
-
-/* =========================
-   Home
+   Home (fixed background via attachment)
 ========================= */
 #home {
-  @extend .fixed-bg;
-  --bg-image: url('slide1.png'); /* 路径修正为 assets 下 */
+  /* 你已在 HTML/SCSS 上设置了 --bg-image，这里直接用 */
+  background-image: var(--bg-image);
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
   color: $light;
   text-align: center;
 
@@ -131,13 +82,9 @@ section {
 
     .button {
       display: inline-block;
-      background: $accent;
-      color: $primary;
-      padding: 0.7rem 1.4rem;
-      text-decoration: none;
-      border-radius: 4px;
+      background: $accent; color: $primary;
+      padding: 0.7rem 1.4rem; text-decoration: none; border-radius: 4px;
       transition: background 0.3s, color 0.3s;
-
       &:hover { background: $primary; color: $light; }
     }
   }
@@ -147,20 +94,12 @@ section {
    About
 ========================= */
 #about {
-  background-color: $light;
-  color: $dark;
+  background-color: $light; color: $dark;
 
-  h2 {
-    margin-bottom: 2rem;
-    color: $primary;
-  }
+  h2 { margin-bottom: 2rem; color: $primary; }
 
   .columns {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-    max-width: 1200px;
-
+    display: flex; flex-wrap: wrap; gap: 2rem; max-width: 1200px;
     p { flex: 1 1 300px; }
   }
 }
@@ -169,64 +108,30 @@ section {
    Gallery
 ========================= */
 #gallery {
-  background-color: $light;
-  color: $dark;
+  background-color: $light; color: $dark;
 
-  h2 {
-    color: $primary;
-    margin-bottom: 2rem;
-  }
+  h2 { color: $primary; margin-bottom: 2rem; }
 
   .carousel {
-    position: relative;
-    width: 100%;
-    max-width: 800px;
-    overflow: hidden;
-    border-radius: 8px;
-    margin: 0 auto;
-    box-shadow: 0 4px 15px rgba($dark, 0.1);
+    position: relative; width: 100%; max-width: 800px; overflow: hidden;
+    border-radius: 8px; margin: 0 auto; box-shadow: 0 4px 15px rgba($dark, 0.1);
 
     .slides {
-      display: flex;
-      transition: transform 0.5s ease;
-      width: 100%;
-
+      display: flex; transition: transform 0.5s ease; width: 100%;
       .slide {
-        flex: 0 0 100%;
-        height: 400px;
-        background-size: 200px 200px; /* 平铺图案 */
-        background-position: center center;
-        background-repeat: repeat;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-origin: content-box;
+        flex: 0 0 100%; height: 400px;
+        background-size: 200px 200px; background-position: center center; background-repeat: repeat;
+        display: flex; align-items: center; justify-content: center; background-origin: content-box;
       }
     }
 
     .arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba($primary, 0.9);
-      color: $light;
-      border: none;
-      cursor: pointer;
-      padding: 0.8rem 1rem;
-      border-radius: 50%;
-      font-size: 1.3rem;
-      z-index: 10;
-      transition: all 0.3s ease;
-      box-shadow: 0 2px 10px rgba($dark, 0.2);
-
-      &:hover {
-        background: $accent;
-        color: $primary;
-        transform: translateY(-50%) scale(1.1);
-      }
-
-      &.prev { left: 15px; }
-      &.next { right: 15px; }
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba($primary, 0.9); color: $light; border: none; cursor: pointer;
+      padding: 0.8rem 1rem; border-radius: 50%; font-size: 1.3rem; z-index: 10;
+      transition: all 0.3s ease; box-shadow: 0 2px 10px rgba($dark, 0.2);
+      &:hover { background: $accent; color: $primary; transform: translateY(-50%) scale(1.1); }
+      &.prev { left: 15px; } &.next { right: 15px; }
     }
   }
 }
@@ -235,41 +140,22 @@ section {
    Members
 ========================= */
 #members {
-  background-color: $light;
-  color: $dark;
+  background-color: $light; color: $dark;
 
-  h2 {
-    color: $primary;
-    margin-bottom: 2rem;
-  }
+  h2 { color: $primary; margin-bottom: 2rem; }
 
   .cards {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-    justify-content: center;
+    display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center;
 
     .card {
-      background: rgba($primary, 0.05);
-      padding: 1.5rem;
-      border-radius: 8px;
-      max-width: 300px;
+      background: rgba($primary, 0.05); padding: 1.5rem; border-radius: 8px; max-width: 300px;
 
-      h3 {
-        color: $primary;
-        margin-bottom: 0.5rem;
-      }
+      h3 { color: $primary; margin-bottom: 0.5rem; }
       p { margin-bottom: 1rem; }
 
       .member-button {
-        background: $primary;
-        color: $light;
-        border: none;
-        padding: 0.5rem 1rem;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: background 0.3s;
-
+        background: $primary; color: $light; border: none; padding: 0.5rem 1rem;
+        border-radius: 4px; cursor: pointer; transition: background 0.3s;
         &:hover { background: $accent; color: $primary; }
       }
     }
@@ -277,66 +163,50 @@ section {
 }
 
 /* =========================
-   Legacy
+   Legacy (fixed background via attachment)
 ========================= */
 #legacy {
-  background: url('dark.png') center/cover fixed;
+  background-image: url('dark.png');
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
   color: $light;
+
   .container {
     background: rgba($primary, 0.75);
-    padding: 2rem;
-    border-radius: 8px;
-    max-width: 800px;
-    h2 {
-      margin-bottom: 1rem;
-    }
-    p {
-      margin-bottom: 1rem;
-    }
+    padding: 2rem; border-radius: 8px; max-width: 800px;
+    h2 { margin-bottom: 1rem; }
+    p  { margin-bottom: 1rem; }
   }
 }
+
 /* =========================
    Video
 ========================= */
 #video {
-  background-color: $light;
-  color: $dark;
+  background-color: $light; color: $dark;
 
   .video-wrapper {
     text-align: center;
-
-    h2 {
-      color: $primary;
-      margin-bottom: 1rem;
-    }
-    video {
-      width: 100%;
-      max-width: 700px;
-      border-radius: 8px;
-    }
+    h2 { color: $primary; margin-bottom: 1rem; }
+    video { width: 100%; max-width: 700px; border-radius: 8px; }
   }
 }
 
 /* =========================
-   Contact / Footer Section
+   Contact / Footer
 ========================= */
 #contact {
-  background: $primary;
-  color: $light;
+  background: $primary; color: $light;
 
   .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
+    display: flex; flex-direction: column; align-items: center; gap: 1rem;
 
     .social {
       a {
-        color: $light;
-        margin: 0 0.5rem;
-        font-size: 1.5rem;
-        transition: color 0.3s;
-
+        color: $light; margin: 0 0.5rem; font-size: 1.5rem; transition: color 0.3s;
         &:hover { color: $accent; }
       }
     }
@@ -345,158 +215,33 @@ section {
   }
 }
 
+/* 为确保任何情况下都不会被覆盖（多余但稳妥） */
+footer, #contact { position: relative; z-index: 1; }
+
 /* =========================
    Modal
 ========================= */
 .modal {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
   background: rgba($primary, 0.8);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  opacity: 0; pointer-events: none;
-  transition: opacity 0.3s ease;
-  z-index: 2000;
+  display: flex; justify-content: center; align-items: center;
+  opacity: 0; pointer-events: none; transition: opacity 0.3s ease; z-index: 2000;
 
   .modal-content {
-    background: $light; color: $primary;
-    padding: 2rem; border-radius: 8px;
-    max-width: 500px; width: 90%;
-    position: relative;
-
+    background: $light; color: $primary; padding: 2rem; border-radius: 8px;
+    max-width: 500px; width: 90%; position: relative;
     h3 { margin-top: 0; margin-bottom: 1rem; }
     p  { margin-bottom: 0; }
-
-    .close {
-      position: absolute; top: 10px; right: 10px;
-      background: none; border: none;
-      font-size: 1.5rem; color: $primary; cursor: pointer;
-    }
+    .close { position: absolute; top: 10px; right: 10px; background: none; border: none; font-size: 1.5rem; color: $primary; cursor: pointer; }
   }
 
-  &.active {
-    opacity: 1; pointer-events: auto;
-  }
+  &.active { opacity: 1; pointer-events: auto; }
 }
 
 /* =========================
    Fade-in Animation
 ========================= */
 .fade-in {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  opacity: 0; transform: translateY(20px);
+  transition: opacity 0.8s ease, tran
 
-  &.show {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* 注意：为了不改 HTML，#home 与 #legacy 节点上仍有 .fade-in。
-   为避免其 transform 影响固定背景，已在 .fixed-bg.fade-in 上强制 transform: none;
-*/
-
-/* =========================
-   Responsiveness
-========================= */
-@media (max-width: 1024px) {
-  .columns p { flex: 1 1 100%; }
-  .cards .card { max-width: 100%; }
-}
-
-@media (max-width: 768px) {
-  .navbar.large ul li a { font-size: 1rem; }
-  .navbar.small ul li a { font-size: 0.8rem; }
-
-  #home .hero-content {
-    padding: 1.5rem 2rem;
-    h1 { font-size: 2.5rem; }
-    p  { font-size: 1rem; }
-  }
-}
-
-@media (max-width: 480px) {
-  #home .hero-content {
-    h1 { font-size: 2rem; }
-    p  { font-size: 0.9rem; }
-  }
-  .navbar ul li { margin: 0 0.5rem; }
-}
-
-/* 1280~1365（含内嵌高度限制） */
-@media (min-width: 1280px) and (max-width: 1365.98px) {
-  .container { width: min(100% - 2rem, 1120px); }
-
-  #home .hero-content {
-    padding: 1.75rem 2.5rem;
-    h1 { font-size: 2.6rem; }
-    p  { font-size: 1.1rem; }
-  }
-
-  @media (max-height: 740px) {
-    .navbar { position: sticky; top: 0; }
-    #home { min-height: 92vh; }
-    #home .hero-content { padding: 1.25rem 2rem; }
-  }
-
-  #gallery .carousel { max-width: 760px; }
-}
-
-/* 1024~1279 */
-@media (min-width: 1024px) and (max-width: 1279.98px) {
-  .container { width: min(100% - 2rem, 960px); }
-  .navbar.large ul li a { font-size: 1rem; }
-
-  #home .hero-content {
-    padding: 1.75rem 2.25rem;
-    h1 { font-size: 2.4rem; }
-    p  { font-size: 1.05rem; }
-  }
-
-  #gallery .carousel { max-width: 700px; }
-  #members .cards .card { max-width: 320px; }
-}
-
-/* 1366~1919 */
-@media (min-width: 1366px) and (max-width: 1919.98px) {
-  .container { width: min(100% - 2rem, 1200px); }
-  .navbar.large ul li a { font-size: 1.05rem; }
-
-  #home .hero-content {
-    h1 { font-size: 2.8rem; }
-    p  { font-size: 1.15rem; }
-  }
-
-  #gallery .carousel { max-width: 800px; }
-
-  @media (max-height: 800px) {
-    #home { min-height: 95vh; }
-  }
-}
-
-/* ≥1920 */
-@media (min-width: 1920px) {
-  .container { width: min(100% - 3rem, 1440px); }
-  .navbar.large ul li a { font-size: 1.15rem; }
-
-  #home .hero-content {
-    padding: 2.25rem 3rem;
-    h1 { font-size: 3.2rem; }
-    p  { font-size: 1.2rem; }
-  }
-
-  #gallery .carousel { max-width: 920px; }
-  #members .cards .card { max-width: 340px; }
-
-  @media (min-height: 1000px) {
-    #home { min-height: 70vh; }
-  }
-}
-
-footer, #contact {
-  position: relative;
-  z-index: 1;
-}
