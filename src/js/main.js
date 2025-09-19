@@ -40,38 +40,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // Enhanced parallax effect for better performance
-  function updateParallax() {
-    // Only apply parallax on desktop for performance
-    if (window.innerWidth <= 768) return;
-    
-    const parallaxSections = document.querySelectorAll('.section.parallax');
-    const scrollTop = window.pageYOffset;
-    
-    parallaxSections.forEach(section => {
-      const rect = section.getBoundingClientRect();
-      const sectionTop = scrollTop + rect.top;
-      const sectionHeight = rect.height;
-      const windowHeight = window.innerHeight;
-      
-      // Calculate if section is in viewport
-      const isInViewport = (
-        rect.top < windowHeight && 
-        rect.bottom > 0
-      );
-      
-      if (isInViewport) {
-        // Calculate parallax offset based on scroll position
-        // The multiplier (0.5) controls parallax speed - adjust as needed
-        const parallaxSpeed = 0.5;
-        const yPos = -(scrollTop - sectionTop) * parallaxSpeed;
-        
-        // Apply the parallax offset
-        section.style.setProperty('--parallax-offset', `${yPos}px`);
-      }
-    });
-  }
-
   // Smooth scrolling for nav links
   navLinks.forEach((link) => {
     link.addEventListener('click', function (e) {
@@ -86,32 +54,34 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // Throttled scroll handler for better performance
-  let ticking = false;
-  function handleScroll() {
-    if (!ticking) {
-      requestAnimationFrame(() => {
-        resizeNav();
-        updateActive();
-        updateParallax();
-        ticking = false;
-      });
-      ticking = true;
-    }
-  }
-
-  window.addEventListener('scroll', handleScroll, { passive: true });
-
-  // Handle resize events
-  window.addEventListener('resize', () => {
-    updateParallax();
-  }, { passive: true });
+  window.addEventListener('scroll', () => {
+    resizeNav();
+    updateActive();
+  });
 
   // Initial state
   resizeNav();
   updateActive();
-  updateParallax();
+  (function() {
+  const sections = Array.from(document.querySelectorAll('.section.parallax'));
 
+  function update() {
+    const vh = window.innerHeight;
+
+    sections.forEach(sec => {
+      const rect = sec.getBoundingClientRect();
+      const total = rect.height + vh;
+      const passed = vh - rect.top;
+      const t = Math.min(1, Math.max(0, passed / total));
+      const y = (t * 100).toFixed(2) + '%';
+      sec.style.setProperty('--parallax-y', y);
+    });
+  }
+
+  update();
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  })();
   // Carousel functionality
   const slidesContainer = document.querySelector('.carousel .slides');
   const slides = document.querySelectorAll('.carousel .slide');
@@ -136,39 +106,17 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // Auto-advance carousel
-  let carouselInterval = setInterval(() => {
-    showSlide(currentSlide + 1);
-  }, 5000);
-
-  // Pause auto-advance on hover
-  const carousel = document.querySelector('.carousel');
-  if (carousel) {
-    carousel.addEventListener('mouseenter', () => {
-      clearInterval(carouselInterval);
-    });
-    
-    carousel.addEventListener('mouseleave', () => {
-      carouselInterval = setInterval(() => {
-        showSlide(currentSlide + 1);
-      }, 5000);
-    });
-  }
-
   // Fade-in sections using IntersectionObserver
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('show');
-          // Don't unobserve immediately to allow for re-triggering if needed
+          observer.unobserve(entry.target);
         }
       });
     },
-    { 
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px' // Trigger slightly before element enters viewport
-    }
+    { threshold: 0.1 }
   );
 
   document.querySelectorAll('.fade-in').forEach((el) => {
@@ -183,16 +131,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const memberInfo = {
     cosimo: {
-      title: 'Cosimo de' Medici (Cosimo the Elder)',
-      text: 'Cosimo de' Medici (1389–1464) founded the Medici political dynasty. As a banker and statesman, he effectively ruled Florence from 1434, patronizing artists like Brunelleschi and ensuring stability. His support of humanism and the arts transformed Florence into the cultural capital of the Renaissance.',
+      title: 'Cosimo de’ Medici (Cosimo the Elder)',
+      text:
+        'Cosimo de’ Medici (1389–1464) founded the Medici political dynasty. As a banker and statesman, he effectively ruled Florence from 1434, patronizing artists like Brunelleschi and ensuring stability【802107299422787†L278-L291】.',
     },
     lorenzo: {
-      title: 'Lorenzo de' Medici (Lorenzo the Magnificent)',
-      text: 'Lorenzo de' Medici (1449–1492) was a poet, statesman and major patron. He fostered artists such as Botticelli, Leonardo da Vinci and Michelangelo, and kept Florence flourishing. Known as "the Magnificent," he balanced diplomacy with cultural patronage, creating a golden age of Renaissance art.',
+      title: 'Lorenzo de’ Medici (Lorenzo the Magnificent)',
+      text:
+        'Lorenzo de’ Medici (1449–1492) was a poet, statesman and major patron. He fostered artists such as Botticelli, Leonardo da Vinci and Michelangelo, and kept Florence flourishing【802107299422787†L300-L305】.',
     },
     catherine: {
-      title: 'Catherine de' Medici',
-      text: 'Catherine de' Medici (1519–1589) married Henry II of France. As queen consort and later regent, she wielded considerable power and saw three of her sons become kings of France. She played a crucial role in French politics during the tumultuous period of the French Wars of Religion.',
+      title: 'Catherine de’ Medici',
+      text:
+        'Catherine de’ Medici (1519–1589) married Henry II of France. As queen consort and later regent, she wielded power and saw three of her sons become kings of France【802107299422787†L318-L323】.',
     },
   };
 
@@ -204,44 +155,18 @@ document.addEventListener('DOMContentLoaded', function () {
         modalTitle.textContent = info.title;
         modalBody.textContent = info.text;
         modal.classList.add('active');
-        // Prevent body scroll when modal is open
-        document.body.style.overflow = 'hidden';
       }
     });
   });
 
-  function closeModal() {
+  closeBtn.addEventListener('click', () => {
     modal.classList.remove('active');
-    // Re-enable body scroll
-    document.body.style.overflow = '';
-  }
-
-  closeBtn.addEventListener('click', closeModal);
+  });
 
   modal.addEventListener('click', (e) => {
     if (e.target === modal) {
-      closeModal();
+      modal.classList.remove('active');
     }
   });
-
-  // Close modal with Escape key
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.classList.contains('active')) {
-      closeModal();
-    }
-  });
-
-  // Performance optimization: Reduce parallax calculations on lower-end devices
-  const isLowEndDevice = () => {
-    return navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4;
-  };
-
-  // Disable parallax on low-end devices
-  if (isLowEndDevice()) {
-    const parallaxSections = document.querySelectorAll('.section.parallax');
-    parallaxSections.forEach(section => {
-      section.style.backgroundAttachment = 'scroll';
-    });
-  }
 });
 
