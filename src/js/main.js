@@ -13,32 +13,28 @@ document.addEventListener('DOMContentLoaded', function () {
       navbar.classList.remove('small');
     }
   }
-
-  // Update active link based on scroll position
   function updateActive() {
-    let index = sections.length - 1;
-    const navHeight = navbar.offsetHeight;
-    const fromTop = window.scrollY + navHeight + 10;
+  const navHeight = navbar.offsetHeight;
+  const probe = navHeight + 10;
 
-    sections.forEach((section, i) => {
-      if (section.offsetTop <= fromTop) {
-        index = i;
-      }
-    });
+  let index = 0;
 
-    // If scrolled to bottom of page, highlight last section
-    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 5) {
-      index = sections.length - 1;
+  sections.forEach((section, i) => {
+    const rect = section.getBoundingClientRect();
+    if (rect.top <= probe && rect.bottom > probe) {
+      index = i;
     }
+  });
 
-    navLinks.forEach((link, i) => {
-      if (i === index) {
-        link.classList.add('active');
-      } else {
-        link.classList.remove('active');
-      }
-    });
+  const doc = document.documentElement;
+  if (Math.ceil(window.scrollY + window.innerHeight) >= doc.scrollHeight - 1) {
+    index = sections.length - 1;
   }
+
+  navLinks.forEach((link, i) => {
+    link.classList.toggle('active', i === index);
+  });
+}
 
   // Smooth scrolling for nav links
   navLinks.forEach((link) => {
