@@ -123,7 +123,9 @@ section {
         display: flex; align-items: center; justify-content: center; background-origin: content-box;
       }
     }
-
+      .slide-1 { background-image: url('assets/hero.png'); }
+      .slide-2 { background-image: url('assets/slide2.png'); }
+      .slide-3 { background-image: url('assets/slide3.png'); }
     .arrow {
       position: absolute; top: 50%; transform: translateY(-50%);
       background: rgba($primary, 0.9); color: $light; border: none; cursor: pointer;
